@@ -3,7 +3,8 @@ const request = require('request');
 const bodyParser = require('body-parser');
 const https = require('https');
 const app = express();
-
+require('dotenv').config()
+MAILAUTH = process.env.MAILAUTH
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended:true}));
@@ -32,7 +33,7 @@ const jsonData = JSON.stringify(data);
 const url = "https://us7.api.mailchimp.com/3.0/lists/70c92ee7b2";
 const option = {
   method: "POST",
-  auth:"Eagle:2efbf35a03f9f3e532f774f76fa249df-us7"
+  auth:"Eagle:MAILAUTH"
 }
 var req_post = https.request(url, option,function(response){
   if(response.statusCode===200){
